@@ -33,9 +33,6 @@ module Doorkeeper
         end
 
         def secret_key(secret_key)
-          if secret_key.is_a? Proc
-            secret_key = secret_key.call
-          end
           @config.instance_variable_set('@secret_key', secret_key)
         end
 
