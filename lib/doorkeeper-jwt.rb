@@ -26,6 +26,8 @@ module Doorkeeper
         return secret_key_file unless secret_key_file.nil?
         return rsa_key if rsa_encryption?
         return ecdsa_key if ecdsa_encryption?
+        return Doorkeeper::JWT.configuration.secret_key.call if Doorkeeper::JWT.configuration.secret_key.is_a? Proc
+
         Doorkeeper::JWT.configuration.secret_key
       end
 
